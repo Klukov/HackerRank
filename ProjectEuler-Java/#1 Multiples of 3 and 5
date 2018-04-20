@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int a0 = 0; a0 < t; a0++){
+            long n = in.nextLong();
+            if (n < 3) {
+                System.out.println(0);
+            }
+            else {
+                long a,b,c;
+                n = n -1;
+                a = (n/3)*3*((n/3)+1)/2;
+                b = (n/5)*5*((n/5)+1)/2;
+                c = (n/15)*15*((n/15)+1)/2;
+                System.out.println(a+b-c);
+            }
+        }
+    }
+}
