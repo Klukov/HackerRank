@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    
+    public static long magic(long number) {
+        long large = 0;
+        long initial = number;
+        
+        if (number == 1) { return 1; }
+        while (number %2 == 0) {
+            number = number/2;
+            if (number == 1) { return 2; }
+        }
+        int i = 3;
+        while (i <= number) {
+            if (i < ((int)(Math.sqrt(number)+1))) {
+                while(number%i == 0) {
+                    number = number/i;
+                    if (number == 1) { return i; }
+                }
+                i = i + 2;
+            }
+            else {return number;}
+        }
+        return initial;
+    }
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for(int a0 = 0; a0 < t; a0++){
+            long n = in.nextLong();
+            long solv = magic(n);
+            System.out.println(solv);
+        }
+    }
+}
