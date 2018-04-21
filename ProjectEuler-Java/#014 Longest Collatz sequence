@@ -1,0 +1,48 @@
+// 100% SOLUTION
+// https://www.hackerrank.com/contests/projecteuler/challenges/euler014/forum/comments/174797
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static final int MAX_NUM = 6000000;
+    public static int[] maximus = new int[MAX_NUM];
+    
+    static {
+        maximus[0] = 0; // 1
+        maximus[1] = 1; // 2
+        int max = 2;
+        long localMax = 1;
+        for (int i = 2; i < MAX_NUM; i++) {
+            long sol_temp = sequence((long)(i+1));
+            if (sol_temp >= localMax) {
+                max = i+1;
+                localMax = sol_temp;
+            }
+            maximus[i] = max;
+        }    
+    }
+    
+    public static long sequence (long num) {
+        long count = 0;
+        while (num != 1) {
+            if (num % 2 == 0) {
+                num = num/2;
+            }
+            else {
+                num = num*3+1;
+            }
+            count++;
+        }
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        int n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            System.out.println(maximus[(sc.nextInt()-1)]);
+        }
+    }
+}
