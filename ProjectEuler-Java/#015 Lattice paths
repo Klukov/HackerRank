@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+import java.math.*;
+
+public class Solution {
+    
+    public static final BigInteger one = BigInteger.valueOf((long)1);
+    public static final BigInteger mod = (BigInteger.valueOf((long)10).pow(9)).add(BigInteger.valueOf((long)7));
+    
+    public static long magic(int n, int m) {
+        long value;
+        BigInteger num1 = BigInteger.valueOf((long)n);
+        BigInteger num2 = BigInteger.valueOf((long)m);
+        BigInteger num3 = BigInteger.valueOf((long)(n+m));
+        num1 = factorial(num1);
+        num2 = factorial(num2);
+        num3 = factorial(num3);
+        return (((num3.divide(num2.multiply(num1))).remainder(mod)).longValue());
+    }
+    
+    public static BigInteger factorial (BigInteger num) {
+        if (num.equals(one)){return BigInteger.valueOf((long)1);}
+        return num.multiply(factorial(num.subtract(one)));
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        for (int i=0; i<t; i++) {
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            System.out.println(magic(n, m) + "");
+        }
+    }
+}
